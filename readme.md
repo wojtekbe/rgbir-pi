@@ -1,1 +1,1 @@
-![assembly][assembly.png]
+![assembly](assembly.png)
