@@ -1,17 +1,19 @@
-import RPi.GPIO as GPIO
+import wiringpi
 
 class FilterWheel:
-    def __init__(self, n, servo_port=18, servo_freq=50):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(servo_port, GPIO.OUT)
-        self.pwm = GPIO.PWM(servo_port, 60)
-        self.pwm.start(0)
+    def __init__(self, n, servo_pin=18):
+        self.pin = servo_pin
+        wiringpi.wiringPiSetupGpio()
+        wiringpi.pinMode(self.pin, wiringpi.GPIO.PWM_OUTPUT)
+        wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
+        wiringpi.pwmSetClock(1920)
+        wiringpi.pwmSetRange(200)
 
     def set(self, angle):
-        d = angle / 18.0 + 2.5
+        d = angle
         print(d)
-        self.pwm.ChangeDutyCycle(d)
+        wiringpi.pwmWrite(self.pin, d)
 
     def stop(self):
-        self.pwm.stop()
-        GPIO.cleanup()
+        wiringpi.pwmWrite(self.pin, 0)
+        wiringpi.pinMode(self.pin, wiringpi.GPIO.OUTPUT)
