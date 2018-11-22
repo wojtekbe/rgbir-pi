@@ -1,5 +1,6 @@
 use <servo.scad>
 use <camera.scad>
+use <spectro_sensor.scad>
 
 module rpi_holes() {
   a=[58, 49]; dia=3; // hole xy
@@ -32,5 +33,13 @@ module cam_servo_board() {
     //servo mount
     servo_p=[20, 5];
 	translate(servo_p) rotate([0, 0, -90]) servo_mount();
+
+	//spectro sensors mount
+	/*
+    sensor1_p=[-20, 10];
+	translate(sensor1_p) spectro_sensor_mounting_holes();
+    sensor2_p=[-20, -10];
+	translate(sensor2_p) spectro_sensor_mounting_holes();
+	*/
   }
 }
