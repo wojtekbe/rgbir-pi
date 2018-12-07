@@ -8,7 +8,7 @@ cam_servo_board();
 
 translate([-20, 5, 2]) {
   rotate([0, 0, -90]) servo();
-  translate([0, 0, 10]) rotate([0, 0, 0]) filterwheel(2, 30);
+  translate([0, 0, 10]) rotate([0, 0, 0]) filterwheel(2, 30, draw_filters=true);
 }
 
 translate([10, 5, 3]) camera();
