@@ -1,7 +1,8 @@
-module spectro_sensor_mounting_holes() {
+module spectro_sensor_mounting_holes(drill=3) {
+  $fn=50;
   b=20.32;
-  translate([ b/2, b/2]) circle(d=3);
-  translate([-b/2, b/2]) circle(d=3);
+  translate([ b/2, b/2]) circle(d=drill);
+  translate([-b/2, b/2]) circle(d=drill);
 }
 
 module spectro_sensor() {

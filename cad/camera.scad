@@ -1,15 +1,17 @@
-module camera_mount_holes() {
+module camera_mount_holes(drill=2) {
   $fn=50;
-  translate([ 21/2,  12.5/2]) circle(d=2);
-  translate([-21/2, -12.5/2]) circle(d=2);
-  translate([ 21/2, -12.5/2]) circle(d=2);
-  translate([-21/2,  12.5/2]) circle(d=2);
+  Ax=21;
+  Ay=13.5;
+  translate([ Ax/2,  Ay/2]) circle(d=drill);
+  translate([-Ax/2, -Ay/2]) circle(d=drill);
+  translate([ Ax/2, -Ay/2]) circle(d=drill);
+  translate([-Ax/2,  Ay/2]) circle(d=drill);
 }
 
 module camera() {
   /* board + holes */
   color("Green") linear_extrude(1) difference() {
-    translate([0, -3.75]) square([25, 24], center=true);
+    translate([0, -3.25]) square([25, 24], center=true);
     camera_mount_holes();
   }
 
