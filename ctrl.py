@@ -4,20 +4,19 @@ import time
 import cv2
 import sys
 
-filt = fw.FilterWheel(2)
+def take_pic(c, f):
+    f.set(0)
+    for i in range(30): s, img0 = c.read()
+    cv2.imwrite("img0.png", img0)
+
+    f.set(1)
+    for i in range(30): s, img1 = c.read()
+    cv2.imwrite("img1.png", img1)
 
 cam = cv2.VideoCapture(0)
-s, img = cam.read()
-cv2.imwrite("out.png", img)
+filt = fw.FilterWheel(pin=18, pwmc=192, pwmr=2000, filter_pos=[66, 113])
 
-while True:
-    filt.set(10)
-    time.sleep(1)
-    filt.set(15)
-    time.sleep(1)
-    filt.set(20)
-    time.sleep(1)
-    filt.set(25)
-    time.sleep(1)
+take_pic(cam, filt)
 
 filt.stop()
+cam.release()
